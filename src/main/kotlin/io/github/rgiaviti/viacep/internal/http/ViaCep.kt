@@ -24,7 +24,7 @@ sealed class ViaCep {
 
     protected fun throwExceptionOnInvalidCEP(cep: String) {
         if (!this.isCEPValid(cep)) {
-            throw CEPFormatException("The CEP $cep is invalid. CEP must have 8 digits: 01001000")
+            throw CEPFormatException("The CEP '$cep' is invalid. CEP must have 8 digits: '01001000'")
         }
     }
 

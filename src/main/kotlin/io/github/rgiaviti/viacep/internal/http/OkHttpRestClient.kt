@@ -1,8 +1,8 @@
 package io.github.rgiaviti.viacep.internal.http
 
 import io.github.rgiaviti.viacep.domains.Endereco
-import io.github.rgiaviti.viacep.internal.exceptions.BadRequestException
 import io.github.rgiaviti.viacep.internal.exceptions.EnderecoNotFoundException
+import io.github.rgiaviti.viacep.internal.exceptions.RequestFailedException
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import okhttp3.OkHttpClient
@@ -25,9 +25,8 @@ class OkHttpRestClient : ViaCep() {
         val response = this.httpClient.newCall(request).execute()
 
         if (!response.isSuccessful) {
-            throw BadRequestException("viacep retornou bad request")
+            throw RequestFailedException("o request ao viacep falhou. status code: ${response.code}")
         }
-
 
         val endereco = Json.decodeFromString<Endereco>(response.body!!.string())
         if (endereco.erro) {
