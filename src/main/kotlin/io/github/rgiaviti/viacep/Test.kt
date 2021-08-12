@@ -1,13 +1,12 @@
 package io.github.rgiaviti.viacep
 
-import io.github.rgiaviti.viacep.ViaCepKlient.HttpEngine.JavaEngine
-import io.github.rgiaviti.viacep.ViaCepKlient.HttpEngine.OkHttp
+import io.github.rgiaviti.viacep.internal.http.engines.HttpEngine
 
 object Test {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val endereco = ViaCepKlient(JavaEngine).getEndereco("13141130")
+        val endereco = ViaCepKlient(HttpEngine.JavaEngine).getEndereco("13141130")
         println(endereco)
     }
 }

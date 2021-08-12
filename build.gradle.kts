@@ -14,7 +14,7 @@ repositories {
 
 dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2")
-    implementation("com.squareup.okhttp3:okhttp:4.9.1")
+    compileOnly("com.squareup.okhttp3:okhttp:4.9.1")
     testImplementation(kotlin("test"))
 }
 

@@ -8,6 +8,10 @@ import kotlinx.serialization.json.Json
 import okhttp3.OkHttpClient
 import okhttp3.Request
 
+/**
+ * Implementação dos requests usando a biblioteca OkHttp. É necessário adicionar a dependência da biblioteca
+ * no pom.xml ou no build.gradle.
+ */
 class OkHttpRestClient : ViaCep() {
 
     private val httpClient: OkHttpClient = OkHttpClient()
@@ -15,10 +19,8 @@ class OkHttpRestClient : ViaCep() {
     override fun getEndereco(cep: String): Endereco {
         this.throwExceptionOnInvalidCEP(cep)
 
-        val url = VIACEP_URL.replace(CEP_PLACEHOLDER, cep)
-
         val request: Request = Request.Builder()
-            .url(url)
+            .url(this.url(cep))
             .get()
             .build()
 
@@ -28,7 +30,7 @@ class OkHttpRestClient : ViaCep() {
             throw RequestFailedException("o request ao viacep falhou. status code: ${response.code}")
         }
 
-        val endereco = Json.decodeFromString<Endereco>(response.body!!.string())
+        val endereco = this.decodeBody(response.body!!.string())
         if (endereco.erro) {
             throw EnderecoNotFoundException("endereco não encontrado para o cep $cep passado")
         }
