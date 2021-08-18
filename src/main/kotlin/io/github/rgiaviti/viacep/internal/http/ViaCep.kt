@@ -1,6 +1,7 @@
 package io.github.rgiaviti.viacep.internal.http
 
 import io.github.rgiaviti.viacep.domains.Endereco
+import io.github.rgiaviti.viacep.internal.UnidadeFederativa
 import io.github.rgiaviti.viacep.internal.exceptions.CEPFormatException
 import io.github.rgiaviti.viacep.internal.exceptions.EnderecoNotFoundException
 import kotlinx.serialization.decodeFromString
@@ -14,7 +15,7 @@ sealed class ViaCep {
 
     companion object {
         const val CEP_PLACEHOLDER = "{cep}"
-        const val VIACEP_URL = "https://viacep.com.br/ws/$CEP_PLACEHOLDER/json/"
+        const val VIACEP_URL = "https://viacep.com.br/ws/$CEP_PLACEHOLDER/json/unicode"
     }
 
     /**
@@ -22,10 +23,6 @@ sealed class ViaCep {
      */
     private fun isCEPValid(cep: String): Boolean {
         if (cep.isBlank() || cep.length != 8 || !cep.matches(Regex("[0-9]+"))) {
-            return false
-        }
-
-        if (cep.length != 8) {
             return false
         }
 
@@ -52,8 +49,18 @@ sealed class ViaCep {
     protected fun decodeBody(body: String) = Json.decodeFromString<Endereco>(body)
 
     /**
+     * Se ocorrer um erro no request e o viacep retornar error=true, é lançada uma exceção
+     */
+    protected fun throwExceptionOnError(endereco: Endereco) {
+        if (endereco.erro) {
+            throw EnderecoNotFoundException("endereco não encontrado para o cep ${endereco.cep} passado")
+        }
+    }
+
+    /**
      * Busca o Endereco a partir do CEP passado como parâmetro. O CEP precisa ter obrigatoriamente 8 caracteres
      * numericos. Não pode haver nenhum tipo de caracter especial. Exemplo de CEP correto: 01001000
      */
     abstract fun getEndereco(cep: String): Endereco
+    abstract fun searchAddress(uf: UnidadeFederativa, city: String, logradouro: String)
 }

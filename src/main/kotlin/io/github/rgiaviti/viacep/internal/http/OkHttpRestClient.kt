@@ -1,6 +1,7 @@
 package io.github.rgiaviti.viacep.internal.http
 
 import io.github.rgiaviti.viacep.domains.Endereco
+import io.github.rgiaviti.viacep.internal.UnidadeFederativa
 import io.github.rgiaviti.viacep.internal.exceptions.EnderecoNotFoundException
 import io.github.rgiaviti.viacep.internal.exceptions.RequestFailedException
 import kotlinx.serialization.decodeFromString
@@ -31,10 +32,13 @@ class OkHttpRestClient : ViaCep() {
         }
 
         val endereco = this.decodeBody(response.body!!.string())
-        if (endereco.erro) {
-            throw EnderecoNotFoundException("endereco não encontrado para o cep $cep passado")
-        }
+        endereco.apply { this.cep = cep }
+        this.throwExceptionOnError(endereco)
 
         return endereco
+    }
+
+    override fun searchAddress(uf: UnidadeFederativa, city: String, logradouro: String) {
+        TODO("Not yet implemented")
     }
 }
