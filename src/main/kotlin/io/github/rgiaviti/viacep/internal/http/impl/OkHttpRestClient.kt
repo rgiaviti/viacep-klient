@@ -4,6 +4,7 @@ import io.github.rgiaviti.viacep.domains.Endereco
 import io.github.rgiaviti.viacep.internal.UnidadeFederativa
 import io.github.rgiaviti.viacep.internal.decodeEndereco
 import io.github.rgiaviti.viacep.internal.exceptions.RequestFailedException
+import io.github.rgiaviti.viacep.internal.getRequestFailedMessage
 import io.github.rgiaviti.viacep.internal.getViaCepUrl
 import io.github.rgiaviti.viacep.internal.http.ViaCep
 import okhttp3.OkHttpClient
@@ -22,7 +23,7 @@ class OkHttpRestClient : ViaCep {
         val response = this.httpClient.newCall(request).execute()
 
         if (!response.isSuccessful) {
-            throw RequestFailedException("o request ao viacep falhou. status code: ${response.code}")
+            throw RequestFailedException(getRequestFailedMessage(response.code))
         }
 
         return decodeEndereco(response.body!!.string())

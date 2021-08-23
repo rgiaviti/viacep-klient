@@ -2,11 +2,6 @@ package io.github.rgiaviti.viacep.internal.http
 
 import io.github.rgiaviti.viacep.domains.Endereco
 import io.github.rgiaviti.viacep.internal.UnidadeFederativa
-import io.github.rgiaviti.viacep.internal.exceptions.CEPFormatException
-import io.github.rgiaviti.viacep.internal.exceptions.EnderecoNotFoundException
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.json.Json
-import java.net.URL
 
 interface ViaCep {
 

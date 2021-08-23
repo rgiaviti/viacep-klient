@@ -30,3 +30,9 @@ fun decodeEndereco(json: String) = Json.decodeFromString<Endereco>(json)
  * Faz o decode de um json array para o objeto Endereco.
  */
 fun decodeEnderecoList(json: String) = Json.decodeFromString<List<Endereco>>(json)
+
+/**
+ * Constrói a mensagem de falha para subir com exceptions. Coloca o response status code no final da mensagem para
+ * indicar qual erro retornado.
+ */
+fun getRequestFailedMessage(statusCode: Int) = "o request ao viacep falhou. status code: $statusCode"
