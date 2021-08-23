@@ -1,8 +1,8 @@
 package io.github.rgiaviti.viacep
 
 import io.github.rgiaviti.viacep.domains.Endereco
-import io.github.rgiaviti.viacep.internal.http.JavaRestClient
-import io.github.rgiaviti.viacep.internal.http.OkHttpRestClient
+import io.github.rgiaviti.viacep.internal.http.impl.JavaRestClient
+import io.github.rgiaviti.viacep.internal.http.impl.OkHttpRestClient
 import io.github.rgiaviti.viacep.internal.http.ViaCep
 import io.github.rgiaviti.viacep.internal.http.engines.HttpEngine
 
