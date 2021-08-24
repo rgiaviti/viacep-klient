@@ -4,9 +4,9 @@ package io.github.rgiaviti.viacep.internal.http.engines
  * HttpEngine disponíveis para utilização nos requests ao Viacep.
  */
 enum class HttpEngine {
-    // Biblioteca OkHttp
+    // Utiliza a biblioteca OkHttp como motor HTTP. Necessita adicionar a dependência externa no classpath do projeto.
     OkHttp,
 
-    // HttpUrlConnection
+    // Usa a HttpUrlConnection provida pela própria JDK. Não necessita de dependência externa.
     JavaEngine
 }

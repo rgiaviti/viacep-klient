@@ -1,10 +1,10 @@
 package io.github.rgiaviti.viacep
 
 import io.github.rgiaviti.viacep.domains.Endereco
+import io.github.rgiaviti.viacep.internal.http.IViaCep
+import io.github.rgiaviti.viacep.internal.http.engines.HttpEngine
 import io.github.rgiaviti.viacep.internal.http.impl.JavaRestClient
 import io.github.rgiaviti.viacep.internal.http.impl.OkHttpRestClient
-import io.github.rgiaviti.viacep.internal.http.ViaCep
-import io.github.rgiaviti.viacep.internal.http.engines.HttpEngine
 
 /**
  * Cliente principal para as consultas no Viacep. Pode escolher qual a engine HTTP você quer utilizar nos requests,
@@ -31,9 +31,10 @@ class ViaCepKlient() {
     }
 
     /**
-     * Return the HTTP engine implementation for executing the rest requests
+     * Retorna a implementação do IViaCep com base no engine escolhido. Cada engine HTTP deverá ter a sua própria
+     * implementação da ‘interface’ IViaCep.
      */
-    private fun restImplementation(): ViaCep {
+    private fun restImplementation(): IViaCep {
         return when (this.httpEngine) {
             HttpEngine.OkHttp -> OkHttpRestClient()
             HttpEngine.JavaEngine -> JavaRestClient()

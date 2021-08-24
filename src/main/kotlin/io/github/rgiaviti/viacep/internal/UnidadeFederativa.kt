@@ -1,5 +1,8 @@
 package io.github.rgiaviti.viacep.internal
 
+/**
+ * Todas as Unidades Federativas do Brasil. São usadas para buscas de CEPs baseado em endereços.
+ */
 enum class UnidadeFederativa(name: String) {
     AC("Acre"),
     AL("Alagoas"),

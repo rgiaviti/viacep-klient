@@ -6,11 +6,11 @@ import io.github.rgiaviti.viacep.internal.decodeEndereco
 import io.github.rgiaviti.viacep.internal.exceptions.RequestFailedException
 import io.github.rgiaviti.viacep.internal.getRequestFailedMessage
 import io.github.rgiaviti.viacep.internal.getViaCepUrl
-import io.github.rgiaviti.viacep.internal.http.ViaCep
+import io.github.rgiaviti.viacep.internal.http.IViaCep
 import java.io.BufferedReader
 import java.net.HttpURLConnection
 
-class JavaRestClient : ViaCep {
+class JavaRestClient : IViaCep {
 
     companion object {
         private const val HTTP_GET_METHOD = "GET"
