@@ -21,15 +21,37 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 */
-package io.github.rgiaviti.viacep.internal.http.engines
+package io.github.rgiaviti.viacep.domains
 
 /**
- * HttpEngine disponíveis para utilização nos requests ao Viacep.
+ * Todas as Unidades Federativas do Brasil. São usadas para buscas de CEPs baseado em endereços.
  */
-enum class HttpEngine {
-    // Utiliza a biblioteca OkHttp como motor HTTP. Necessita adicionar a dependência externa no classpath do projeto.
-    OkHttp,
-
-    // Usa a HttpUrlConnection provida pela própria JDK. Não necessita de dependência externa.
-    JavaEngine
+enum class UnidadeFederativa(name: String) {
+    AC("Acre"),
+    AL("Alagoas"),
+    AP("Amapá"),
+    AM("Amazonas"),
+    BA("Bahia"),
+    CE("Ceará"),
+    DF("Distrito Federal"),
+    ES("Espírito Santo"),
+    GO("Goiás"),
+    MA("Maranhão"),
+    MT("Mato Grosso"),
+    MS("Mato Grosso do Sul"),
+    MG("Minas Gerais"),
+    PA("Pará"),
+    PB("Paraíba"),
+    PR("Paraná"),
+    PE("Pernambuco"),
+    PI("Piauí"),
+    RJ("Rio de Janeiro"),
+    RN("Rio Grande do Norte"),
+    RS("Rio Grande do Sul"),
+    RO("Rondônia"),
+    RR("Roraima"),
+    SC("Santa Catarina"),
+    SP("São Paulo"),
+    SE("Sergipe"),
+    TO("Tocantins")
 }

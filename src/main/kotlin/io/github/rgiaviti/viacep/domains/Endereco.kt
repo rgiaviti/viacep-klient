@@ -30,7 +30,7 @@ import kotlinx.serialization.Serializable
 data class Endereco(
 
     @SerialName("erro")
-    var erro: Boolean = false,
+    private var erro: Boolean = false,
 
     @SerialName("cep")
     var cep: String = "",

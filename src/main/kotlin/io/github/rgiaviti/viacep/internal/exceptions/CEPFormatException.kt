@@ -23,7 +23,7 @@
 */
 package io.github.rgiaviti.viacep.internal.exceptions
 
-class CEPFormatException : Exception {
+internal class CEPFormatException : Exception {
     constructor() : super()
     constructor(message: String?) : super(message)
     constructor(message: String?, cause: Throwable?) : super(message, cause)

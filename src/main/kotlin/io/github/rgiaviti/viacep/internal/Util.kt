@@ -37,25 +37,25 @@ import java.net.URL
  *
  * Se o CEP não atender essas regras, a função retornará false. Caso contrário, true.
  */
-fun isCEPValid(cep: String) = !(cep.isBlank() || cep.length != 8 || !cep.matches(Regex("[0-9]+")))
+internal fun isCEPValid(cep: String) = !(cep.isBlank() || cep.length != 8 || !cep.matches(Regex("[0-9]+")))
 
 /**
  * A função constrói e retorna um objeto URL a partir da String de request para o endpoint do ViaCEP.
  */
-fun getViaCepUrl(cep: String) = URL(IViaCep.VIACEP_URL.replace(IViaCep.CEP_PLACEHOLDER, cep))
+internal fun getViaCepUrl(cep: String) = URL(IViaCep.VIACEP_URL.replace(IViaCep.CEP_PLACEHOLDER, cep))
 
 /**
  * Faz o decode para o objeto Endereco a partir de um JSON.
  */
-fun decodeEndereco(json: String) = Json.decodeFromString<Endereco>(json)
+internal fun decodeEndereco(json: String) = Json.decodeFromString<Endereco>(json)
 
 /**
  * Faz o decode de um json array para o objeto Endereco.
  */
-fun decodeEnderecoList(json: String) = Json.decodeFromString<List<Endereco>>(json)
+internal fun decodeEnderecoList(json: String) = Json.decodeFromString<List<Endereco>>(json)
 
 /**
  * Constrói a mensagem de falha para subir com exceptions. Coloca o response status code no final da mensagem para
  * indicar qual erro retornado.
  */
-fun getRequestFailedMessage(statusCode: Int) = "o request ao viacep falhou. status code: $statusCode"
+internal fun getRequestFailedMessage(statusCode: Int) = "o request ao viacep falhou. status code: $statusCode"

@@ -24,10 +24,12 @@
 package io.github.rgiaviti.viacep
 
 import io.github.rgiaviti.viacep.domains.Endereco
+import io.github.rgiaviti.viacep.internal.exceptions.CEPFormatException
 import io.github.rgiaviti.viacep.internal.http.IViaCep
-import io.github.rgiaviti.viacep.internal.http.engines.HttpEngine
+import io.github.rgiaviti.viacep.domains.HttpEngine
 import io.github.rgiaviti.viacep.internal.http.impl.JavaRestClient
 import io.github.rgiaviti.viacep.internal.http.impl.OkHttpRestClient
+import io.github.rgiaviti.viacep.internal.isCEPValid
 
 /**
  * Cliente principal para as consultas no Viacep. Pode escolher qual a engine HTTP você quer utilizar nos requests,
@@ -50,7 +52,11 @@ class ViaCepKlient() {
      * Retorna o endereço completo a partir do CEP passado como parâmetro.
      */
     fun getEndereco(cep: String): Endereco {
-        return this.restImplementation().getEndereco(cep)
+        if (isCEPValid(cep)) {
+            return this.restImplementation().getEndereco(cep)
+        }
+
+        throw CEPFormatException("the cep $cep has a invalid format")
     }
 
     /**

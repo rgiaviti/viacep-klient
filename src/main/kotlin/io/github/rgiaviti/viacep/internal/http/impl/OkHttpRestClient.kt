@@ -24,7 +24,7 @@
 package io.github.rgiaviti.viacep.internal.http.impl
 
 import io.github.rgiaviti.viacep.domains.Endereco
-import io.github.rgiaviti.viacep.internal.UnidadeFederativa
+import io.github.rgiaviti.viacep.domains.UnidadeFederativa
 import io.github.rgiaviti.viacep.internal.decodeEndereco
 import io.github.rgiaviti.viacep.internal.exceptions.RequestFailedException
 import io.github.rgiaviti.viacep.internal.getRequestFailedMessage
@@ -37,7 +37,7 @@ import okhttp3.Request
  * Implementação dos requests usando a biblioteca OkHttp. É necessário adicionar a dependência da biblioteca
  * no pom.xml ou no build.gradle.
  */
-class OkHttpRestClient : IViaCep {
+internal class OkHttpRestClient : IViaCep {
 
     private val httpClient: OkHttpClient = OkHttpClient()
 
