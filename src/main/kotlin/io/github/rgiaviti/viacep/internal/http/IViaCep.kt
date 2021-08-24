@@ -26,7 +26,7 @@ package io.github.rgiaviti.viacep.internal.http
 import io.github.rgiaviti.viacep.domains.Endereco
 import io.github.rgiaviti.viacep.domains.UnidadeFederativa
 
-internal interface IViaCep {
+interface IViaCep {
 
     companion object {
         const val CEP_PLACEHOLDER = "{cep}"

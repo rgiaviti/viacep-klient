@@ -13,9 +13,16 @@ repositories {
     mavenCentral()
 }
 
+// Dependencies Versions
+val serializationJsonVersion = "1.2.2"
+val okHttpVersion = "4.9.1"
+val mockkVersion = "1.12.0"
+
 dependencies {
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2")
-    compileOnly("com.squareup.okhttp3:okhttp:4.9.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationJsonVersion")
+    compileOnly("com.squareup.okhttp3:okhttp:$okHttpVersion")
+    testImplementation("com.squareup.okhttp3:okhttp:$okHttpVersion")
+    testImplementation("io.mockk:mockk:$mockkVersion")
     testImplementation(kotlin("test"))
 }
 

@@ -39,13 +39,20 @@ import io.github.rgiaviti.viacep.internal.isCEPValid
 class ViaCepKlient() {
 
     /** Default Http Engine -> JavaEngine **/
-    private var httpEngine: HttpEngine = HttpEngine.JavaEngine
+    private var httpEngine: HttpEngine
+    private var viacep: IViaCep
 
     /**
      * Constrói a classe baseada no HttpEngine escolhido para efetuar os requests para o Viacep.
      */
     constructor(engine: HttpEngine) : this() {
         this.httpEngine = engine
+
+    }
+
+    init {
+        this.httpEngine = HttpEngine.JavaEngine
+        this.viacep = this.restImplementation()
     }
 
     /**
