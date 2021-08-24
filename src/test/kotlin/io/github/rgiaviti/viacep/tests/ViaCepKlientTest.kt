@@ -4,6 +4,7 @@ import io.github.rgiaviti.viacep.ViaCepKlient
 import io.github.rgiaviti.viacep.domains.Endereco
 import io.github.rgiaviti.viacep.internal.exceptions.CEPFormatException
 import io.github.rgiaviti.viacep.internal.http.IViaCep
+import io.github.rgiaviti.viacep.tests.Util.correctEndereco
 import io.mockk.every
 import io.mockk.junit5.MockKExtension
 import io.mockk.mockk
@@ -51,18 +52,4 @@ internal class ViaCepKlientTest {
     fun testHigherDigitsCEP() {
         assertThrows<CEPFormatException> {  klient.getEndereco("010011100000") }
     }
-
-    private fun correctEndereco() = Endereco(
-        erro = false,
-        cep = "01001-001",
-        logradouro = "Praça da Sé",
-        complemento = "lado par",
-        bairro = "Sé",
-        localidade = "São Paulo",
-        uf = "SP",
-        ibge = "3550308",
-        gia = "gia",
-        ddd = "11",
-        siafi = "7107"
-    )
 }
